@@ -1,0 +1,50 @@
+#include "stdafx.h"
+#include <iostream>
+#include <conio.h>
+#include "math.h"
+
+using namespace std;
+void solucion(float A,float B,float C,float D);
+void main()
+{
+	float A,B,C,D, X1,X2 ;
+
+	cout<<"\n introducir el valor de A:";
+	cin>>A;
+
+	cout<<"\n introducir el valor de B:";
+	cin>>B;
+
+ 	cout<<"\n introducir el valor de C:";
+	cin>>C;
+	D=B*B-(4*A*C);
+	solucion (A,B,C,D);
+	getch();
+}
+
+void solucion(float A,float B,float C,float D)
+{
+	float X1,X2,xi;
+    if(D==0)
+	{
+		X1=-B/(2*A);
+		cout<<"hay una solucion real"<<X1<<endl;
+	}
+	else
+		if(D>0)
+		{
+			X1=(-B+sqrt(B*B-4*A*C))/(2*A);
+			X2=(-B-sqrt(B*B-4*A*C))/(2*A);
+			cout<<"existen dos soluciones reales:";
+			cout<<"el valor de X1 es:"<<X1;
+			cout<<"el valor de X2 es:"<<X2;
+		}
+		else
+		{
+			D=D*(-1);
+			X1=(-B)/(2*A);
+			xi=sqrt(D)/(2*A);
+			cout<<"existe una solucion real e imaginaria:"<<endl;
+			cout<<"Xr: "<<X1<<"\n"<<"xi:"<<xi;
+		}
+}
