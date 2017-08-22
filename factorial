@@ -1,0 +1,31 @@
+#include "stdafx.h"
+#include <iostream>
+#include <conio.h>
+
+using namespace std;
+
+int fac (int n);
+int comb(int n, int r);
+
+void main()
+{
+	float c;
+	int n,r;
+	cout<<"\n ingrese el valor de n:";
+	cin>>n;
+	do{
+		cout<<"\n ingrese el valor de r:";
+		cin>>r;
+	}while(r<n);
+	c=comb(n,r);
+	cout<<"\n la comninatoria es:"<<c;
+	getch();
+}
+int fac(int n)
+{ 
+	int i=1;
+	int p=1;
+	for(i=1;i<=n;i++)
+		p=p*i;
+	return(p);
+}
