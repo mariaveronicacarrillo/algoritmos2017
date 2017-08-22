@@ -1,0 +1,35 @@
+#include "stdafx.h"
+#include <iostream>
+#include <conio.h>
+
+using namespace std;
+
+void Solucion1( float A, float B, float C, float D, float E, float F, float &X, float &Y);
+float main()
+{
+	float A,B,C,D,E,F,X,Y;
+	do{
+		cout<<"ingrese el valor de A!=0:";
+		cin>>A;
+	}while(A==0);
+	cout<<"\n ingrese el valor de B:";
+	cin>>B;
+	cout<<"\n ingrese el valor de C:";
+	cin>>C;
+	cout<<"\n ingrese el valor de D:";
+	cin>>D;
+    cout<<"\n ingrese el valor de E:";
+	cin>>E;
+    cout<<"\n ingrese el valor de F:";
+	cin>>F;
+
+	Solucion1(A,B,C,D,E,F,X,Y);
+    cout<<"\n El valor de x es:"<<X;
+	cout<<"\n El valor de Y es:"<<Y;
+	_getch();
+}
+void Solucion1( float A, float B, float C, float D, float E, float F, float &X, float &Y)
+{
+	Y = ((A*F)-(E*D))/((A*E)-(D*B));
+	X = (D-B*Y)/A;
+}
