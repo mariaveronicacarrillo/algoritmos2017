@@ -1,0 +1,108 @@
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <cmath>
+#include <cstdlib>
+#include <conio.h>
+
+#define MAX 100
+
+using namespace std;
+float areatriangulo(float a, float b, float c);
+string Freversa(string p);
+void cargarvector(int vec[], int n);
+void concatenar(int VA[], int VB[], int n, int m,int VC[]);
+
+void main()
+{
+	short opc;
+	float a, b, c, area;
+	string palabra, reversa;
+	int vec1[MAX], vec2[MAX],conc[MAX], n, m;
+	do {
+		cout << "************Menu************* " << endl;
+		cout << " 1.- --- Area de un triangulo en Funcion de sus Lados " << endl;
+		cout << " 2.- --- Concatenar vector" << endl;
+		cout << " 3.- --- Palindromo " << endl;
+		cout << " 0.- --- Salir" << endl;
+		cout << "Ingrese la opcion" << endl;
+		cin >> opc;
+		switch (opc) {
+		case 1: {
+			cout << "INGRESE LOS LADOS : " << endl;
+			cin >> a >> b >> c;
+			area = areatriangulo(a, b, c);
+			cout << "El area es " << area << endl;
+			break; }
+		case 2: {
+			cout << "Tamaño del primer vector: ";
+			cin >> n;
+			cargarvector(vec1, n);
+			cout << "Tamaño del segundo vector: ";
+			cin >> m;
+			cargarvector(vec2, m);
+			concatenar(vec1,vec2,n,m,conc);
+			break; }
+		case 3: {
+			cin.ignore();
+			cout << "Ingrese una palabra: ";
+			getline(cin, palabra);
+			reversa = Freversa(palabra);
+			cout << reversa;
+			if (palabra == reversa)
+				cout << " es palindromo" << endl;
+			else
+				cout << " no es palindromo" << endl;
+
+			break; }
+		case 0:
+			cout << "Salir \n ";
+			break;
+		default: cout << "opcion invalida " << endl;
+			break;
+		}
+		
+	} while (opc != 0);
+
+	_getch();
+}
+
+
+
+float areatriangulo(float a, float b, float c) {
+	float area, p;
+	p = (a + b + c) / 2;
+	area = sqrt(p*(p - a)*(p - b)*(p - c));
+	return area;
+}
+
+string Freversa(string p) {
+	string r;
+	for (int i = p.size() - 1; i >= 0; i--)
+		r += p[i];
+	return r;
+}
+void cargarvector(int vec[], int n) {
+	for (int i = 0; i<n; i++) {
+		cout << "ingrese el valor de la posicion " << i << endl;
+		cin >> vec[i];
+	}
+
+}
+
+void concatenar(int VA[], int VB[], int n, int m, int VC[]) {
+	int tam, i, j=0;
+	tam = n + m;
+	for (i=0; i<n; i++) {
+		VC[i] = VA[i];
+	}
+	for (i = n; i < n + m; i++) {
+		VC[i] = VB[j];
+		j++;
+	}
+	cout << "el vector concatenado es : ";
+	for (i = 0; i < tam; i++) {
+		cout << " " << VC[i] << " ";
+	}
+
+}
