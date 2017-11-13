@@ -1,0 +1,105 @@
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#include <string>
+#define MAX 100
+using namespace std;
+void cargarvector(int V[],int N);
+void cargarnombre(string nombre[],int N);
+void cargarnotas(float v[], int N);
+void media(float v[MAX],int N,float &media); 
+void mostrardiferencia(string nombre[],float v[],int N,int m);
+void eliminarprimos(int V[],int N);
+bool verifesprimo(int numero);
+void main()
+{
+	int N,V[MAX];
+	float v[MAX],m;
+	string nombre[MAX];
+	do{
+	cout << "Ingrese el numero de estudiantes " ;
+	cin >> N;
+	}while(N<0 || N>MAX);
+	cargarnombre(nombre,N);
+	cargarnotas(v,N);
+	media(v,N,m);
+	cout << "La media es : " << m << endl;
+	mostrardiferencia(nombre,v,N,m);
+	/*do{
+	cout << "numero de elementos: " ;
+	cin >> N;
+	}while(N<0  || N > MAX);
+	cargarvector(V,N);
+	eliminarprimos(V,N);*/
+    getch();
+}
+
+void cargarvector(int V[],int N){
+	int i;
+	for(i=0;i<N;i++){
+		cin >> V[i];
+	
+	}
+
+}
+void cargarnombre(string nombre[],int N){
+	int i;
+	for(i=0;i<N;i++){
+		cout << "ingrese el nombre del estudiante[" << i+1 << "]: " << endl;
+		cin.ignore();
+		getline(cin,nombre[i]);
+	}
+
+}
+
+void cargarnotas(float v[], int N){
+	int i;
+	for(i=0;i<N;i++){
+		cout << "Ingrese la nota del estudiante[" <<i+1<<"]"<< endl; 
+		cin >> v[i];
+	}
+}
+void media(float v[],int N,float &media)
+{
+	int i;
+	float s=0;
+	for(i=0;i<N;i++){
+		s = s + v[i];
+	}
+	media = s / N ;
+}
+
+void mostrardiferencia(string nombre[],float v[],int N,int m){
+	int i;
+	for(i=0;i<N;i++){
+		cout << "La nota del estudiante " << nombre[i] << " es " << v[i] << " y la diferencia con la media es " << fabs(v[i]-m) << endl;
+	}
+
+
+}
+
+void eliminarprimos(int V[],int N){
+	int i,nuevo_vector[MAX],tam=0;
+	for(i=0;i<N;i++){
+		if(verifesprimo(V[i])==false){
+			nuevo_vector[tam] = V[i];
+			tam++;
+			}
+	
+	}
+	for(i=0;i<tam;i++){
+		cout << nuevo_vector[i] << " " ;
+	}
+
+}
+
+bool verifesprimo(int numero){
+	int i;
+	bool k=true;
+	for(i=2;i<numero;i++){
+		if(numero%i==0)
+			k=false;
+	}
+
+return k;
+}
