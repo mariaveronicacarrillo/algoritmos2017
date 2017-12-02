@@ -1,0 +1,118 @@
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#define max 5
+using namespace std;
+void cargarmatriz(int v[max][max], int x, int c);
+void mostrarmatriz(int v[max][max], int x, int c);
+void matriztranspuesta(int v[max][max], int x, int c, int m[max][max]);
+void productodematrices(int v[max][max], int b[max][max], int s[max][max], int x, int c);
+
+
+void main()
+{
+	int matriz1[max][max], n, c, l, t, matriz2[max][max], matriz2trasp[max][max], suma[max][max];
+	cout << "programa que suma dos matrices  " << endl;
+	do
+	{
+		cout << "introduzca el numero de filas de la matriz #1" << endl;
+		cin >> n;
+	} while (n<0 || n>max);
+	do
+	{
+		cout << "introduzca el numero de columnas de la matriz #1 " << endl;
+		cin >> c;
+	} while (c<0 || c>max);
+	cout << "carge la matriz #1" << endl;
+	cargarmatriz(matriz1, n, c);
+	cout << endl;
+	cout << "para multiplicar matrices las dos deben de ser del mismo tamanho" << endl;
+	cout << "o fila de la #1 con columna del #2  deben de ser del mismo rango" << endl;
+	do
+	{
+		cout << "introduzca el numero de filas de la matriz #2" << endl;
+		cin >> l;
+		if (l != c)
+		{
+			cout << "la multiplicacion de matrices no se dara" << endl;
+			cout << "por que no cumple las condiciones necesarias" << endl;
+		}
+	} while (l!=c);
+	do
+	{
+		cout << "introduzca el numero de columnas de la matriz #2 " << endl;
+		cin >> t;
+	} while (t<0 || t>max);
+	cout << "carge la matriz #2" << endl;
+	cargarmatriz(matriz2, l, t);
+	cout << endl;
+	cout << " matriz #1";
+	cout << endl;
+	mostrarmatriz(matriz1, n, c);
+	cout << endl;
+	cout << " matriz #2";
+	cout << endl;
+	mostrarmatriz(matriz2, l, t);
+	cout << endl;
+	matriztranspuesta(matriz2, l, t, matriz2trasp);
+	cout << " multiplicacion de las matrices 1y2";
+	productodematrices(matriz1, matriz2trasp, suma, n, c);
+	cout << endl;
+	mostrarmatriz(suma, n, t);
+
+	getch();
+}
+
+void cargarmatriz(int v[max][max], int x, int c)
+{
+	int i, j;
+	for (i = 0; i < x; i++)
+		for (j = 0; j < c; j++)
+			cin >> v[i][j];
+}
+
+void mostrarmatriz(int v[max][max], int x, int c)
+{
+	int i, j;
+	for (i = 0; i < x; i++)
+	{
+		cout << " |";
+		for (j = 0; j < c; j++)
+		{
+			cout << " " << v[i][j] << " ";
+		}
+		cout << "| ";
+		cout << endl;
+	}
+}
+void matriztranspuesta(int v[max][max], int x, int c, int m[max][max])
+{
+	int i, j, aux;
+	for (j = 0; j < x; j++)
+		for (i = 0; i < c; i++)
+		{
+			aux = v[j][i];
+			m[i][j] = aux;
+		}
+}
+
+
+void productomatrices(int v[max][max], int b[max][max], int s[max][max], int x, int c)
+{
+	int i, j, k, suma = 0, m;
+	for (i = 0; i < x; i++)
+	{
+		for (j = 0; j < c; j++)
+		{
+			for (k = 0; k < c; k++)
+			{
+				m = v[i][k] * b[j][k];
+				suma = suma + m;
+			}
+			s[i][j] = suma;
+			m = 0;
+			suma = 0;
+
+		}
+	}
+}
